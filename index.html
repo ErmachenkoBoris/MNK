@@ -11,22 +11,23 @@
 
 <body>
   <div class="content">
+    <h1>МНК</h1>
     <canvas height='550' width='900' id="canvas">
 
     </canvas>
-    <div class="button" onclick="drawSpline()">
+
+    <div class="button" onclick="reset()">RELOAD</div>
+
+    <div class="button" onclick="drawMKN()">
+        
       <span id="func-start"> y(x) = </span>
-      <div class="frac">
-        <span>(cos(x<sup>2</sup>) + sin(x<sup>3</sup>))</span>
-        <span class="symbol">/</span>
-        <span class="bottom">7</span>
-      </div>
+      log(x) * 10 - (x * x * x + 200) / 20 + x * x + 50
     </div>
 
     <div class="control">
       <label class="label" for="input">Size of step:</label>
       <input id="input" type="text" class="input" placeholder="enter size of step, please">
-      <div class="button" onclick="reset()">RELOAD</div>
+      
       <label class="label" for="checkbox"> Show deviation</label>
       <input class="checkbox" type="checkbox" id="checkbox" />
     </div>

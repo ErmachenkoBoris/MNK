@@ -44,9 +44,10 @@ canvas{
     margin: 10px;
     border-radius: 10px;
     display: flex;
-    width: 200px;
+    
     height: 50px;
     font-weight: 500;
+    padding: 10px;
     background: darkblue;
     justify-content: center;
     align-items: center;
