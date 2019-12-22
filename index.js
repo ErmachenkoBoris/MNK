@@ -6,6 +6,7 @@ const halfWidth = canvas.width / 2;
 const halfHeight = canvas.height / 2;
 let Step = 20;
 const K = 3;
+// const K = 4;
 
 function drawField () {
   // --------------------draw field---------------------------
@@ -18,7 +19,7 @@ function drawField () {
 
   for (let i = -canvas.width; i < canvas.width; i += 50) {
 
-    ctx.fillText(i, halfWidth + i, halfHeight);
+    ctx.fillText(i / 10, halfWidth + i, halfHeight);
     ctx.fillText(-i, halfWidth, halfHeight + i);
   }
 
@@ -53,8 +54,10 @@ function reset () {
 }
 
 function sourceFunction (x, draw = 0) {
-  const y = -(Math.log(x) * 10 - (x * x * x + 200) / 20 + x * x + 50);
+  x = x / 10;
 
+  // const y = -(5 * (x + 2) * (x + 2) * (x + 2) * (x + 2) - (x - 7) * (x - 7) / 3 + x * 2 + 12);
+  const y = -((x * x * x) / 2 + Math.log(x * x) * 10 + x * x * 2 + 10);
   return y;
 }
 
@@ -128,10 +131,8 @@ function resolveSystemViaGaussMethod (matrix, matrixB, result) {
   }
 
   for (let i = (K + 1) - 1; i >= 0; i--) {
-
     let s = 0;
     for (let j = i; j < K + 1; j++) {
-
       s = s + matrix[i][j] * result[j];
     }
     result[i] = (matrixB[i] - s) / matrix[i][i];
@@ -215,8 +216,8 @@ function drawMKN () {
 }
 
 function findDifferences (result) {
-  const cx = halfWidth;
-  const cy = halfHeight;
+  // const cx = halfWidth;
+  // const cy = halfHeight;
   let maxDiff = -100000000000;
   let maxDiffX = 0;
   for (let i = -drawN; i < drawN; i++) {
@@ -229,13 +230,13 @@ function findDifferences (result) {
         maxDiff = Math.abs(y1 - y2);
         maxDiffX = i;
       }
-      ctx.moveTo(cx + x, cy + y1);
-      ctx.lineTo(cx + x, cy + y2);
-      ctx.strokeStyle = 'black';
-      ctx.stroke();
+      // ctx.moveTo(cx + x, cy + y1);
+      // ctx.lineTo(cx + x, cy + y2);
+      // ctx.strokeStyle = 'black';
+      // ctx.stroke();
     }
   }
   const div = document.createElement('div');
-  div.textContent = `MAX deviation = ${(maxDiff).toFixed(2)} ( x = ${maxDiffX} )`;
+  div.textContent = `Наибольшая погрешность = ${(maxDiff).toFixed(2)} ( при x = ${maxDiffX / 10} )`;
   table.appendChild(div);
 }
